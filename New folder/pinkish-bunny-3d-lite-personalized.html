@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pinkish Bunny Studios — 3D Lite (Personalized)</title>
+  <meta name="description" content="Lightweight 3D site for Pinkish Bunny Studios with contact info and services." />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pink: #f8b4d9;
+      --white: #ffffff;
+      --glass: rgba(255,255,255,0.08);
+      --card: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial;
+      background: linear-gradient(180deg, #0d0d0d, #141414);
+      color: var(--white);
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+    a { color: var(--pink); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    header {
+      position: fixed; top: 0; left: 0; right: 0;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 20px; z-index: 100;
+      background: rgba(0,0,0,0.4); backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .brand { display: flex; align-items: center; gap: 10px; }
+    .brand-logo {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
+      display: grid; place-items: center; font-size: 22px;
+      box-shadow: 0 4px 14px rgba(248,180,217,0.3);
+      animation: floatLogo 5s ease-in-out infinite;
+    }
+    @keyframes floatLogo { 0%,100% { transform: translateY(0);} 50% { transform: translateY(-6px);} }
+    .brand-name { font-weight: 700; font-size: 16px; }
+    .brand-name span { color: var(--pink); }
+    nav a { color: var(--white); margin: 0 10px; opacity: 0.9; }
+    nav a:hover { opacity: 1; }
+
+    .hero {
+      height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .orb {
+      position: absolute; width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(248,180,217,0.6), transparent 70%);
+      filter: blur(60px);
+      animation: moveOrb 14s ease-in-out infinite alternate;
+    }
+    @keyframes moveOrb { from { transform: translate(-20%, -10%) scale(1.1);} to { transform: translate(20%, 10%) scale(1.2);} }
+    .hero-content { position: relative; z-index: 5; padding: 0 20px; }
+    .hero h1 {
+      font-family: 'Playfair Display', serif; font-style: italic;
+      font-size: clamp(32px, 5vw, 64px); margin-bottom: 10px;
+      text-shadow: 0 2px 20px rgba(248,180,217,0.4);
+    }
+    .hero p { opacity: 0.9; letter-spacing: 1px; }
+    .cta {
+      margin-top: 18px; padding: 12px 20px; border-radius: 10px;
+      background: linear-gradient(180deg, rgba(248,180,217,0.4), rgba(248,180,217,0.15));
+      border: 1px solid var(--border); color: #000; font-weight: 700; text-transform: uppercase;
+      box-shadow: 0 6px 20px rgba(248,180,217,0.25);
+    }
+
+    section { padding: 80px 20px; max-width: 1100px; margin: auto; }
+    section h2 { font-size: 28px; margin-bottom: 10px; }
+    section p { opacity: 0.95; margin-bottom: 16px; }
+
+    .glass {
+      background: var(--glass); border: 1px solid var(--border);
+      border-radius: 16px; backdrop-filter: blur(12px);
+      padding: 20px; margin-bottom: 20px; box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+    }
+
+    .services-grid {
+      display: grid; gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+    .service-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 18px;
+      display: grid; grid-template-columns: 44px 1fr; gap: 12px; align-items: center;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 14px 32px rgba(0,0,0,0.25); }
+    .icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      display: grid; place-items: center; font-size: 22px;
+      background: linear-gradient(180deg, rgba(248,180,217,0.18), rgba(248,180,217,0.06));
+      border: 1px solid var(--border);
+    }
+    .service-card h3 { font-size: 16px; margin: 0; }
+    .service-card p { font-size: 13px; opacity: 0.9; margin: 2px 0 0; }
+
+    .contact-list { display: grid; gap: 10px; }
+    .contact-item { display: flex; gap: 10px; align-items: center; }
+    .tag {
+      padding: 6px 10px; border-radius: 999px; font-size: 12px; color: #000;
+      background: linear-gradient(180deg, rgba(248,180,217,0.6), rgba(248,180,217,0.2));
+      border: 1px solid var(--border);
+    }
+
+    footer { text-align: center; padding: 40px 20px; border-top: 1px solid var(--border); opacity: 0.85; }
+    footer .bunny { font-size: 30px; display: inline-block; animation: hop 2.6s ease-in-out infinite; }
+    @keyframes hop { 0%,100% { transform: translateY(0);} 50% { transform: translateY(-6px);} }
+    @media (max-width: 700px) { nav { display: none; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="brand-logo">🐇</div>
+      <div class="brand-name"><span>Pinkish Bunny</span> Studios</div>
+    </div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="orb"></div>
+    <div class="hero-content">
+      <h1>Art that Glows in Every Dimension</h1>
+      <p>Pinkish Bunny Studios — where creativity meets light.</p>
+      <a href="#about" class="cta">Explore Studio</a>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2>About Us</h2>
+    <div class="glass">
+      <p>Pinkish Bunny Studios brings together art, design, and storytelling into a futuristic experience. Every project glows with elegance, passion, and imagination — crafted for the soul.</p>
+    </div>
+  </section>
+
+  <section id="services">
+    <h2>Services</h2>
+    <p>Clean, visual, and easy to explore. Tap a card on mobile for details.</p>
+    <div class="services-grid">
+      <div class="service-card"><div class="icon">👗</div><div><h3>Modeling</h3><p>Editorial, product, and creative direction poses.</p></div></div>
+      <div class="service-card"><div class="icon">📊</div><div><h3>Business Analytics</h3><p>Insights, dashboards, and strategy for growth.</p></div></div>
+      <div class="service-card"><div class="icon">🧑‍💻</div><div><h3>Website Designing</h3><p>Elegant, responsive sites with modern UX.</p></div></div>
+      <div class="service-card"><div class="icon">🐾</div><div><h3>Pet Store</h3><p>Branding and visuals for pet products & shops.</p></div></div>
+      <div class="service-card"><div class="icon">✒️</div><div><h3>Logo Design</h3><p>Distinct marks that speak your identity.</p></div></div>
+      <div class="service-card"><div class="icon">🎯</div><div><h3>Brand Identity & Style Guides</h3><p>Systems for consistency across every touchpoint.</p></div></div>
+      <div class="service-card"><div class="icon">🖌️</div><div><h3>Illustration & Art Work</h3><p>Custom artwork that elevates your story.</p></div></div>
+      <div class="service-card"><div class="icon">🖼️</div><div><h3>Photo Editing</h3><p>Retouching, color grading, and composition.</p></div></div>
+      <div class="service-card"><div class="icon">📰</div><div><h3>Brochures & Flyers</h3><p>Print-ready layouts with impact.</p></div></div>
+      <div class="service-card"><div class="icon">💼</div><div><h3>Business Cards & Stationery</h3><p>Professional sets that feel premium.</p></div></div>
+      <div class="service-card"><div class="icon">📱</div><div><h3>Social Media Graphics & Content</h3><p>On-brand posts, covers, and reels.</p></div></div>
+      <div class="service-card"><div class="icon">📦</div><div><h3>Packaging Design</h3><p>Concept to shelf-ready designs & mockups.</p></div></div>
+      <div class="service-card"><div class="icon">🎞️</div><div><h3>Motion Graphics & Animation</h3><p>Title animations, promos, and loops.</p></div></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="glass">
+      <div class="contact-list">
+        <div class="contact-item"><span class="tag">WhatsApp</span><a href="https://wa.me/2347053055681" target="_blank" rel="noopener">+234 705 305 5681</a></div>
+        <div class="contact-item"><span class="tag">Phone</span><a href="tel:+2348022387726">0802 238 7726</a></div>
+        <div class="contact-item"><span class="tag">Email</span><a href="mailto:pinkishbunny@gmail.com">pinkishbunny@gmail.com</a></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="bunny">🐇</div>
+    <p>© <span id="year"></span> Pinkish Bunny Studios — All rights reserved.</p>
+  </footer>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
